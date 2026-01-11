@@ -1,15 +1,25 @@
-export default function StatusBadge({ status }) {
+export default function PriorityBadge({ priority }) {
     const styles = {
-        pending: 'bg-yellow-100 text-yellow-800 border-yellow-200',
-        running: 'bg-blue-100 text-blue-800 border-blue-200',
-        completed: 'bg-green-100 text-green-800 border-green-200',
+        Low:
+            'bg-gray-50 text-gray-600 border-gray-200 ' +
+            'dark:bg-gray-800 dark:text-gray-300 dark:border-gray-700',
+
+        Medium:
+            'bg-orange-50 text-orange-600 border-orange-200 ' +
+            'dark:bg-orange-900/30 dark:text-orange-300 dark:border-orange-800',
+
+        High:
+            'bg-red-50 text-red-600 border-red-200 ' +
+            'dark:bg-red-900/30 dark:text-red-300 dark:border-red-800',
     };
 
     return (
         <span
-            className={`px-3 py-1 text-xs font-medium rounded-full border ${styles[status]}`}
+            className={`inline-flex items-center px-2.5 py-0.5
+        rounded-md text-xs font-medium border
+        transition-colors ${styles[priority]}`}
         >
-            {status.toUpperCase()}
+            {priority}
         </span>
     );
 }
