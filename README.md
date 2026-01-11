@@ -13,6 +13,12 @@ The goal was to design a small but realistic internal automation tool that can c
 While the problem is simple on the surface, the focus of this project is on **clean architecture, logical backend flow, usable UI, and production-ready practices**, rather than adding unnecessary complexity.
 
 ---
+### Demo Video Link
+
+Below is a short demo showing job creation, execution, and webhook trigger.
+
+[Click here to watch the demo video](https://drive.google.com/file/d/1aao63GAJH1zMQjjtLN7B4Vaedl1MEiGO/view?usp=sharing)
+---
 
 ### What This Application Does
 
