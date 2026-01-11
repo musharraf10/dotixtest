@@ -23,15 +23,36 @@ export default function Dashboard() {
     const handleRunJob = async (jobId) => {
         try {
             setRunningJobId(jobId);
+
             await runJob(jobId);
+
+            // Immediately reflect running state
             await loadJobs();
+
+            // Poll until completed
+            pollJobUntilCompleted(jobId);
+
         } catch (err) {
             console.error('Failed to run job', err);
             alert('Failed to start job');
-        } finally {
             setRunningJobId(null);
         }
     };
+
+    const pollJobUntilCompleted = async (jobId) => {
+        const interval = setInterval(async () => {
+            const res = await fetchJobs(filters);
+            setJobs(res.data);
+
+            const job = res.data.find(j => j.id === jobId);
+            if (job && job.status === 'completed') {
+                clearInterval(interval);
+                setRunningJobId(null);
+            }
+        }, 1000);
+    };
+
+
 
     return (
         <div className="space-y-6">
