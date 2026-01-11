@@ -1,26 +1,28 @@
 import PriorityBadge from './PriorityBadge';
 import StatusBadge from './StatusBadge';
-import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 export default function JobTable({ jobs, onRun, runningJobId }) {
+    const navigate = useNavigate();
+
     return (
         <div className="overflow-hidden rounded-lg border border-gray-200 dark:border-gray-800 bg-white dark:bg-gray-900 shadow-sm">
             <table className="w-full">
                 <thead className="bg-gray-50 dark:bg-gray-800 border-b border-gray-200 dark:border-gray-700">
                     <tr>
-                        <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">
+                        <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase">
                             Task Name
                         </th>
-                        <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">
+                        <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase">
                             Priority
                         </th>
-                        <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">
+                        <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase">
                             Status
                         </th>
-                        <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">
+                        <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase">
                             Created
                         </th>
-                        <th className="px-6 py-3 text-right text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">
+                        <th className="px-6 py-3 text-right text-xs font-medium text-gray-500 dark:text-gray-400 uppercase">
                             Action
                         </th>
                     </tr>
@@ -34,16 +36,11 @@ export default function JobTable({ jobs, onRun, runningJobId }) {
                         return (
                             <tr
                                 key={job.id}
-                                className="hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors"
+                                onClick={() => navigate(`/jobs/${job.id}`)}
+                                className="cursor-pointer hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors"
                             >
-                                <td className="px-6 py-4">
-                                    <Link
-                                        to={`/jobs/${job.id}`}
-                                        className="text-sm font-medium text-gray-900 dark:text-gray-100
-                      hover:text-gray-700 dark:hover:text-gray-300 hover:underline transition-colors"
-                                    >
-                                        {job.taskName}
-                                    </Link>
+                                <td className="px-6 py-4 text-sm font-medium">
+                                    {job.taskName}
                                 </td>
 
                                 <td className="px-6 py-4">
@@ -64,14 +61,18 @@ export default function JobTable({ jobs, onRun, runningJobId }) {
                                     })}
                                 </td>
 
-                                <td className="px-6 py-4 text-right">
+                                {/* Action column (excluded from row click) */}
+                                <td
+                                    className="px-6 py-4 text-right"
+                                    onClick={(e) => e.stopPropagation()}
+                                >
                                     <button
                                         disabled={isDisabled}
                                         onClick={() => onRun(job.id)}
                                         className={`px-4 py-2 rounded-lg text-sm font-medium transition-all
                       ${isDisabled
                                                 ? 'bg-gray-100 dark:bg-gray-800 text-gray-400 dark:text-gray-500 cursor-not-allowed'
-                                                : 'bg-gray-900 dark:bg-gray-100 text-white dark:text-gray-900 hover:bg-gray-800 dark:hover:bg-gray-200 hover:shadow-md active:scale-95'
+                                                : 'bg-gray-900 dark:bg-gray-100 text-white dark:text-gray-900 hover:bg-gray-800 dark:hover:bg-gray-200 active:scale-95'
                                             }`}
                                     >
                                         {isRunning ? 'Starting...' : 'Run Job'}
