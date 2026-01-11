@@ -208,16 +208,17 @@ Exact sub-versions depend on platform defaults at usage time.
 
 Frontend UI
 
-- “Improve the dashboard UI using Tailwind CSS while keeping all logic unchanged.”
-- “Add light and dark mode support using Tailwind without adding new dependencies.”
-- “Polish table, form, and empty state UI for better usability.”
-- “Improve StatusBadge and PriorityBadge components with dark mode support.”
+- Improve the dashboard UI using Tailwind CSS while keeping all logic unchanged.
+- Improve Tailwind table UI for dark mode with proper contrast.
+- Add light and dark mode support using Tailwind without adding new dependencies.
+- Polish table, form, and empty state UI for better usability.
+- Improve StatusBadge and PriorityBadge components with dark mode support.
 
 Documentation
 
-- “Create a clear README structure for a full-stack job scheduler project.”
-- “Rewrite README content in simple headings and bullet points.”
-- “Align README with evaluation criteria.”
+- Create a clear README structure for a full-stack job scheduler project.
+- Rewrite README content in simple headings and bullet points.
+- Align README with evaluation criteria.
 
 ---
 
