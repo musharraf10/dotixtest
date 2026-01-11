@@ -10,6 +10,8 @@ exports.triggerWebhook = async (job) => {
       completedAt: new Date().toISOString(),
     };
 
+    // console.log("🔗 Sending webhook to:", process.env.WEBHOOK_URL);
+
     const response = await axios.post(process.env.WEBHOOK_URL, payload);
 
     console.log("Webhook sent:", response.status);
